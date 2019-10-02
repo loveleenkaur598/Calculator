@@ -12,6 +12,7 @@
 		3F67AEBC233C44E500AD695C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F67AEBA233C44E500AD695C /* Main.storyboard */; };
 		3F67AEBE233C44E700AD695C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F67AEBD233C44E700AD695C /* Assets.xcassets */; };
 		3F67AEC1233C44E700AD695C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F67AEBF233C44E700AD695C /* LaunchScreen.storyboard */; };
+		3F71FC7523443F4E005F2DDA /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F71FC7423443F4E005F2DDA /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		3F67AEBD233C44E700AD695C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F67AEC0233C44E700AD695C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F67AEC2233C44E700AD695C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F71FC7423443F4E005F2DDA /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		3F67AEAA233C44E500AD695C = {
 			isa = PBXGroup;
 			children = (
+				3F71FC7423443F4E005F2DDA /* Launch Screen.storyboard */,
 				3F67AEB5233C44E500AD695C /* Calculator */,
 				3F67AEB4233C44E500AD695C /* Products */,
 			);
@@ -90,6 +93,9 @@
 		3F67AEAB233C44E500AD695C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = CentennialCollege;
@@ -124,6 +130,7 @@
 			files = (
 				3F67AEC1233C44E700AD695C /* LaunchScreen.storyboard in Resources */,
 				3F67AEBE233C44E700AD695C /* Assets.xcassets in Resources */,
+				3F71FC7523443F4E005F2DDA /* Launch Screen.storyboard in Resources */,
 				3F67AEBC233C44E500AD695C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
