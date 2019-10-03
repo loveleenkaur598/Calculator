@@ -1,15 +1,7 @@
-//
-//  ViewController.swift
-//  Calculator
-//
-//  Created by Student on 2019-09-25.
-//  Copyright © 2019 CentennialCollege. All rights reserved.
-//
-
 // NAME: LOVELEEN KAUR
 // STUDENTID: 301093331
 // DESCRIPTION: CALCULATOR
-// DATE:
+// DATE: 2019-09-25.
 // VERSION HISTORY: v1 - added functionality for buttons
 
 import UIKit
@@ -17,49 +9,49 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var resultLabel: UILabel!
+    
+    // 12 + 16
+    // previous number (12)
+    // number displayed on screen (16)
+    //is performing operation Boolean true/false
+    //oprtation performing + - / *
+    // tag(what is pressed on the screen
 
-    var numberOnScreen: Double = 0
-    var previousNumber: Double = 0
-    var operation = 0
-    var isDecimal = false
-    var isPerformingOperation = false
+    var numberOnScreen: Double = 0      // current number on the screen
+    var previousNumber: Double = 0      // previously typed number
+    var operation = 0                   // what operation is done
+    var isDecimal = false               // check if number is decimal
+    var isPerformingOperation = false   // checking any operation is performed is pressed
 
-
+    // inital screen
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-
-        resultLabel.text = ""
+        resultLabel.text = ""           // inital text field
     }
 
+    
+    // function for entering number on the screen
     @IBAction func digitPressed(_ sender: Any) {
         
         let tag = (sender as! UIButton).tag
 
         if isPerformingOperation == true{
-            // next time i m pressing number don't get into this
+            // next time i am pressing number don't get into this
             isPerformingOperation = false
             resultLabel.text = String(tag-1)
             numberOnScreen = Double(resultLabel.text!)!
         }else{
-
-            // 12 + 16
-            // previous number (12)
-            // number displayed on screen (16)
-            //is performing operation Boolean true/false
-            //oprtation performing + - / *
-            // tag(what is pressed on the screen
-
+            // intial digit on the screen
             resultLabel.text = resultLabel.text! + String(tag-1)
             numberOnScreen = Double(resultLabel.text!)!
         }
-
     }
 
+    // function for using operation for calculation
     @IBAction func operatorPressed(_ sender: Any) {
         let tag = (sender as! UIButton).tag
+        
         /*clear button - 16*/
-
         if tag == 16{
             resultLabel.text = ""
             previousNumber = 0
@@ -68,49 +60,40 @@ class ViewController: UIViewController {
             return
         }
         
-        if tag == 18{
-                resultLabel.text = String(Double(resultLabel.text!)!/100)
-        }
-        
+        /*back button - 19*/
         if tag == 19{
             let num = resultLabel.text!.dropLast()
             numberOnScreen = Double(num) ?? 0.0
             resultLabel.text = String(num)
-//            if(previousNumber.count == 0)
-//            {
-//                previousNumber = "0"
-//            }
-//            resultLabel.text = previousNumber
         }
         
         if(!(resultLabel.text?.isEmpty)!){
         /* operation +(14) - (13) / (11) x (12) = 15 % 18 .17*/
 
-            if tag == 11{
+            if tag == 11{ // for divide
                 isPerformingOperation = true
                 previousNumber = Double(resultLabel.text!)!
                 resultLabel.text = "/"
                 operation = tag
 
-            }else if tag == 12{
+            }else if tag == 12{ // for multiplication
                 isPerformingOperation = true
                 previousNumber = Double(resultLabel.text!)!
                 resultLabel.text = "*"
                 operation = tag
 
-            }else if tag == 13{
+            }else if tag == 13{ //for minus
                 isPerformingOperation = true
                 previousNumber = Double(resultLabel.text!)!
                 resultLabel.text = "-"
                 operation = tag
 
-            }else if tag == 14{
+            }else if tag == 14{ // for addition
                 isPerformingOperation = true
                 previousNumber = Double(resultLabel.text!)!
                 resultLabel.text = "+"
                 operation = tag
-            }else if tag == 17{
-                
+            }else if tag == 17{ // code for dot operator
                 if(!(resultLabel.text?.contains("."))!)
                 {
                     resultLabel.text = resultLabel.text! + "."
@@ -118,12 +101,14 @@ class ViewController: UIViewController {
                     isDecimal = true
                     
                 }
+            }else if tag == 18{ // percentage
                 
-            }else if tag == 15{
                 isPerformingOperation = true
-
+                resultLabel.text = String(Double(resultLabel.text!)!/100)
+                
+            }else if tag == 15{ //=
                 //check operation
-                if operation == 11{
+                if operation == 11{ // check operation for divide
                     
                     if(isDecimal == true){
                         resultLabel.text = String(previousNumber/numberOnScreen)
@@ -133,24 +118,41 @@ class ViewController: UIViewController {
                         resultLabel.text = String(num)
                     }
 
-                }else if operation == 12{
-                    resultLabel.text = String(previousNumber*numberOnScreen)
-
-
-                }else if operation == 13{
-                    resultLabel.text = String(previousNumber-numberOnScreen)
-
-
-                }else if operation == 14{
-                    resultLabel.text = String(previousNumber+numberOnScreen)
+                }else if operation == 12{ // check operation for multiplication
+                    if(isDecimal == true){
+                        resultLabel.text = String(previousNumber*numberOnScreen)
+                    }else{
+                        resultLabel.text = String(previousNumber*numberOnScreen)
+                        let num = resultLabel.text!.dropLast(2)
+                        resultLabel.text = String(num)
+                    }
+                }else if operation == 13{ // check operation for subtraction
+                    if(isDecimal == true){
+                        resultLabel.text = String(previousNumber-numberOnScreen)
+                    }else{
+                        resultLabel.text = String(previousNumber-numberOnScreen)
+                        let num = resultLabel.text!.dropLast(2)
+                        resultLabel.text = String(num)
+                    }
+                }else if operation == 14{ // check operation for addition
+                    if(isDecimal == true){
+                        resultLabel.text = String(previousNumber+numberOnScreen)
+                    }else{
+                        resultLabel.text = String(previousNumber+numberOnScreen)
+                        let num = resultLabel.text!.dropLast(2)
+                        resultLabel.text = String(num)
+                    }
                 }
-
             }
         }
     }
 
 }
 
+
+
+
+// for button borderwidth , radius and bordercolor
 @IBDesignable extension UIButton {
 
     @IBInspectable var borderWidth: CGFloat {
