@@ -67,52 +67,41 @@ class ViewController: UIViewController {
             resultLabel.text = String(num)
         }
         
-        if(!(resultLabel.text?.isEmpty)!){
+        if(!(resultLabel.text?.isEmpty)!){ // if nothing is entered on the screen
         /* operation +(14) - (13) / (11) x (12) = 15 % 18 .17*/
 
-            if tag == 11{ // for divide
+            if ((tag == 11 || tag == 12 || tag == 13 || tag == 14 || tag == 17 || tag == 18) && (resultLabel.text != "*" && resultLabel.text != "-" && resultLabel.text != "+" && resultLabel.text != "/")){ // for checking the operation
+                
                 isPerformingOperation = true
                 previousNumber = Double(resultLabel.text!)!
-                resultLabel.text = "/"
                 operation = tag
-
-            }else if tag == 12{ // for multiplication
-                isPerformingOperation = true
-                previousNumber = Double(resultLabel.text!)!
-                resultLabel.text = "*"
-                operation = tag
-
-            }else if tag == 13{ //for minus
-                isPerformingOperation = true
-                previousNumber = Double(resultLabel.text!)!
-                resultLabel.text = "-"
-                operation = tag
-
-            }else if tag == 14{ // for addition
-                isPerformingOperation = true
-                previousNumber = Double(resultLabel.text!)!
-                resultLabel.text = "+"
-                operation = tag
-            }else if tag == 17{ // code for dot operator
-                if(!(resultLabel.text?.contains("."))!)
-                {
-                    resultLabel.text = resultLabel.text! + "."
-                    numberOnScreen = Double(resultLabel.text!)!
-                    isDecimal = true
-                    
+                if tag == 11 { // divide
+                    resultLabel.text = "/"
+                } else if tag == 12{ // multiplication
+                    resultLabel.text = "*"
+                }else if tag == 13{ // subtraction
+                    resultLabel.text = "-"
+                }else if tag == 14{ // addition
+                    resultLabel.text = "+"
+                }else if tag == 17{ // percentage
+                    if(!(resultLabel.text?.contains("."))!) // checking if result do not contains dot operator
+                    {
+                        resultLabel.text = resultLabel.text! + "."
+                        numberOnScreen = Double(resultLabel.text!)!
+                        isDecimal = true
+                        
+                    }
+                }else if tag == 18 { // for percentage
+                    isPerformingOperation = true
+                    resultLabel.text = String(Double(resultLabel.text!)!/100)
                 }
-            }else if tag == 18{ // percentage
-                
-                isPerformingOperation = true
-                resultLabel.text = String(Double(resultLabel.text!)!/100)
-                
             }else if tag == 15{ //=
                 //check operation
                 if operation == 11{ // check operation for divide
                     
                     if(isDecimal == true){
                         resultLabel.text = String(previousNumber/numberOnScreen)
-                    }else{
+                    }else{ // for removing decimal for non decimal number
                         resultLabel.text = String(previousNumber/numberOnScreen)
                         let num = resultLabel.text!.dropLast(2)
                         resultLabel.text = String(num)
@@ -121,7 +110,7 @@ class ViewController: UIViewController {
                 }else if operation == 12{ // check operation for multiplication
                     if(isDecimal == true){
                         resultLabel.text = String(previousNumber*numberOnScreen)
-                    }else{
+                    }else{ // for removing decimal for non decimal number
                         resultLabel.text = String(previousNumber*numberOnScreen)
                         let num = resultLabel.text!.dropLast(2)
                         resultLabel.text = String(num)
@@ -129,7 +118,7 @@ class ViewController: UIViewController {
                 }else if operation == 13{ // check operation for subtraction
                     if(isDecimal == true){
                         resultLabel.text = String(previousNumber-numberOnScreen)
-                    }else{
+                    }else{ // for removing decimal for non decimal number
                         resultLabel.text = String(previousNumber-numberOnScreen)
                         let num = resultLabel.text!.dropLast(2)
                         resultLabel.text = String(num)
@@ -137,7 +126,7 @@ class ViewController: UIViewController {
                 }else if operation == 14{ // check operation for addition
                     if(isDecimal == true){
                         resultLabel.text = String(previousNumber+numberOnScreen)
-                    }else{
+                    }else{ // for removing decimal for non decimal number
                         resultLabel.text = String(previousNumber+numberOnScreen)
                         let num = resultLabel.text!.dropLast(2)
                         resultLabel.text = String(num)
